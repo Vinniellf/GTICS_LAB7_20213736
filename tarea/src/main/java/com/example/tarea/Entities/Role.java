@@ -2,20 +2,16 @@ package com.example.tarea.Entities;
 
 import jakarta.persistence.*;
 
-
 @Entity
-@Table(name = "rooms")
-public class Room {
+@Table(name = "roles")
+public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Column(name = "name", nullable = false, length = 100)
+    @Column(name = "name", nullable = false, length = 50)
     private String name;
-
-    @Column(name = "capacity", nullable = false)
-    private Integer capacity;
 
     public Integer getId() {
         return id;
@@ -31,13 +27,5 @@ public class Room {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Integer getCapacity() {
-        return capacity;
-    }
-
-    public void setCapacity(Integer capacity) {
-        this.capacity = capacity;
     }
 }

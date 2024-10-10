@@ -1,13 +1,9 @@
 package com.example.tarea.Entities;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.time.LocalDate;
 
-@Getter
-@Setter
 @Entity
 @Table(name = "movies")
 public class Movie {
@@ -19,7 +15,6 @@ public class Movie {
     @Column(name = "title", nullable = false, length = 100)
     private String title;
 
-    @Lob
     @Column(name = "description")
     private String description;
 
@@ -29,4 +24,44 @@ public class Movie {
     @Column(name = "releaseDate")
     private LocalDate releaseDate;
 
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Integer getDuration() {
+        return duration;
+    }
+
+    public void setDuration(Integer duration) {
+        this.duration = duration;
+    }
+
+    public LocalDate getReleaseDate() {
+        return releaseDate;
+    }
+
+    public void setReleaseDate(LocalDate releaseDate) {
+        this.releaseDate = releaseDate;
+    }
 }

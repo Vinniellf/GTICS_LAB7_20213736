@@ -1,29 +1,34 @@
 package com.example.tarea.Controllers;
 
-import ch.qos.logback.core.model.Model;
+import com.example.tarea.Entities.Movieprojection;
 import com.example.tarea.Repositories.BaseRepository;
+import com.example.tarea.Repositories.MovieproRepository;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/gerente")
 public class GerenteController {
 
     final BaseRepository baseRepository;
+    private final MovieproRepository movieproRepository;
 
-    public GerenteController(BaseRepository baseRepository) {
+    public GerenteController(BaseRepository baseRepository, MovieproRepository movieproRepository) {
         this.baseRepository = baseRepository;
+        this.movieproRepository = movieproRepository;
     }
+
+
 
     @GetMapping("/proyecciones")
-    public String sub1(Model model) {
-        return "proyecciones";
-    }
-
-    @GetMapping("/registro")
     public String sub2(Model model) {
-        return "registroUsuario";
+        List<Movieprojection> proyecciones = movieproRepository.findAll();
+        model.addAttribute("proyecciones", proyecciones);
+        return "Gerente/proyecciones";
     }
 
     /*GetMapping("/sub2")

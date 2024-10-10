@@ -1,29 +1,44 @@
 package com.example.tarea.Controllers;
 
-import ch.qos.logback.core.model.Model;
+import com.example.tarea.Entities.Movie;
+import com.example.tarea.Entities.Movieprojection;
 import com.example.tarea.Repositories.BaseRepository;
+import com.example.tarea.Repositories.MovieRepository;
+import com.example.tarea.Repositories.MovieproRepository;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
+import java.util.Scanner;
 
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
 
     final BaseRepository baseRepository;
+    private final MovieproRepository movieproRepository;
+    private final MovieRepository movieRepository;
 
-    public AdminController(BaseRepository baseRepository) {
+    public AdminController(BaseRepository baseRepository, MovieproRepository movieproRepository, MovieRepository movieRepository) {
         this.baseRepository = baseRepository;
+        this.movieproRepository = movieproRepository;
+        this.movieRepository = movieRepository;
     }
 
-    @GetMapping("/login")
-    public String sub1(Model model) {
-        return "login";
-    }
-
-    @GetMapping("/registro")
+    @GetMapping("/proyecciones")
     public String sub2(Model model) {
-        return "registroUsuario";
+        List<Movieprojection> proyecciones = movieproRepository.findAll();
+        model.addAttribute("proyecciones", proyecciones);
+        return "Admin/proyecciones";
+    }
+
+    @GetMapping("/peliculas")
+    public String sub3(Model model) {
+        List<Movie> movies = movieRepository.findAll();
+        model.addAttribute("movies", movies);
+        return "Admin/proyecciones";
     }
 
     /*GetMapping("/sub2")

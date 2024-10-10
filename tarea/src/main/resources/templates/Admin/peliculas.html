@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecciones</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .highlight {
+            background-color: #ffeb3b;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .flower-img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        .nav-link {
+            margin-left: auto;
+        }
+        .nav-item img {
+            margin-left: 10px;
+        }
+        .total-flores {
+            margin-top: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div th:replace="~{Admin/header :: nav_bar}"></div>
+    <!--TABLE -->
+
+    <div class="container mt-5">
+
+
+        <div class="mb-3">
+            <a class="btn btn-success" th:href="@{'/admin/nuevaPelicula'}">Agregar una nueva pelicula</a>
+        </div>
+
+        <h2 class="mb-4">Lista de Peliculas</h2>
+        <h3 class="text-center mb-4">Lista de Peliculas</h3>
+
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Titulo</th>
+                <th scope="col">Duracion (min)</th>
+                <th scope="col">Fecha de estreno</th>
+                <th scope="col">Opciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each = "p : ${proyecciones}">
+                <td th:text="${p.id}"></td>
+                <td th:text="${p.movie.title}"></td>
+                <td th:text="${p.room.name}"></td>
+                <td th:text="${p.projectionDate}"></td>
+                <td th:text="${p.availableSeats}"></td>
+
+                <td class="fw-bold">
+                    <!--<a class="btn btn-info" th:href="@{'/gerente/leer?idReceta=' + ${receta.idreceta}}">Leer</a>-->
+                    <a class="btn btn-success" th:href="@{'/gerente/editarPro?idPro=' + ${p.id}}">Editar</a>
+                    <a class="btn btn-danger" th:href="@{'/gerente/borrarPro?idPro=' + ${p.id}}">Borrar</a>
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+    -->
+
+
+
+    <!-- Total de ALGO -->
+    <!--
+    <div class="total-flores">
+        Total de flores disponibles: <span th:text="${#lists.size(flores)}">0</span>
+    </div>
+    -->
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
